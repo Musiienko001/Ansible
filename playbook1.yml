@@ -1,0 +1,22 @@
+
+---
+- name: Install nginx
+  hosts: ansible-test
+ 
+  become: yes
+
+
+  tasks:
+
+  
+  - name: Installs Nginx web server
+    apt:
+      name: ['nginx']
+      state: latest 
+    become: yes
+     
+
+  - name: start nginx
+    service:
+        name: nginx
+        state: started
