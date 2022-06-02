@@ -5,6 +5,12 @@
  
   become: yes
 
+  vars:
+    sourse_file: ./MyWebSite/index.html
+    destin_file: /var/www/html
+
+
+
 
   tasks:
 
@@ -14,9 +20,14 @@
       name: ['nginx']
       state: latest 
     become: yes
+
+
+  - name: Copy mypage on server
+    copy: src={{ sourse_file }}   dest={{ destin_file }} mode=0555
      
 
   - name: start nginx
     service:
         name: nginx
         state: started
+        enabled: yes
